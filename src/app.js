@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ChatRoom from './components/ChatRooms';
+import ChatRoom from './components/ChatRooms.jsx';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <ChatRoom />
+      <div className="container">
+      <ChatRoom/>
       </div>
     );
   }
 }
-ReactDOM.render(<App />, document.getElementById('app'));
+// ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
