@@ -12,6 +12,7 @@ class ChatRoom extends Component {
       messages: []
     }
   }
+
   componentDidMount() {
     console.log("mount component");
     firebase.database().ref('messages/').on('value', (snapshot) => {
@@ -21,7 +22,7 @@ class ChatRoom extends Component {
         this.setState({
           messages: currentMessages
         })
-      } 
+      }
     })
   }
   updateMessage(event) {
@@ -54,18 +55,17 @@ class ChatRoom extends Component {
   render() {
     const currentMessages = this.state.messages.map((message, i) => {
       return (
-        <li key={i} className="alert alert-success">{message.text}</li>
+        <li key={i} className="bubble">
+            <div className=""></div>
+          {message.text}
+        </li>
       )
     });
     return (
-      // <div className="chat  col-md-5">
-      //   <ol className="list-group">
-      //     {currentMessages}
-      //     <p>{this.state.userTyping}</p>
-      //   </ol>
+
       <div>
-        <ChatBox  messages={currentMessages}/>
-        <form onSubmit={(event) => this.submitMessage(event)}>
+        <ChatBox messages={currentMessages} />
+        <form className="col-md-8" onSubmit={(event) => this.submitMessage(event)}>
           <input required ref="msg"
             onBlur={(event) => { this.notTyping(event) }}
             onFocus={(event) => { this.userTyping(event) }}
