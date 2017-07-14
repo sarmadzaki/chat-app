@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase';
 import '../App.css'
+import ChatBox from './Chat_Box'
 class ChatRoom extends Component {
   constructor(props, context) {
     super(props, context);
@@ -15,11 +16,12 @@ class ChatRoom extends Component {
     console.log("mount component");
     firebase.database().ref('messages/').on('value', (snapshot) => {
       const currentMessages = snapshot.val()
+      // const loading = <p>Loading...</p>
       if (currentMessages != null) {
         this.setState({
           messages: currentMessages
         })
-      }
+      } 
     })
   }
   updateMessage(event) {
@@ -56,11 +58,13 @@ class ChatRoom extends Component {
       )
     });
     return (
-      <div className="chat  col-md-5">
-        <ol className="list-group">
-          {currentMessages}
-          <p>{this.state.userTyping}</p>
-        </ol>
+      // <div className="chat  col-md-5">
+      //   <ol className="list-group">
+      //     {currentMessages}
+      //     <p>{this.state.userTyping}</p>
+      //   </ol>
+      <div>
+        <ChatBox  messages={currentMessages}/>
         <form onSubmit={(event) => this.submitMessage(event)}>
           <input required ref="msg"
             onBlur={(event) => { this.notTyping(event) }}
