@@ -9,7 +9,8 @@ class ChatRoom extends Component {
       userTyping: "",
       focus: false,
       message: '',
-      messages: []
+      messages: [],
+      loading: 'Loading....'
     }
   }
 
@@ -20,8 +21,11 @@ class ChatRoom extends Component {
       // const loading = <p>Loading...</p>
       if (currentMessages != null) {
         this.setState({
-          messages: currentMessages
+          messages: currentMessages,
+          loading: " "
         })
+      } else {
+
       }
     })
   }
@@ -64,7 +68,9 @@ class ChatRoom extends Component {
     return (
 
       <div>
-        <ChatBox messages={currentMessages} />
+        <ChatBox messages={currentMessages}
+                  loadingMessage={this.state.loading}          
+         />
         <form className="col-md-8" onSubmit={(event) => this.submitMessage(event)}>
           <input required ref="msg"
             onBlur={(event) => { this.notTyping(event) }}
