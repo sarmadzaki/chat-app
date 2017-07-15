@@ -22,3 +22,7 @@
 .loading{
     color: white;
 }
+.form {
+    margin-top: 10px !important;
+    margin-right: 5px !important;
+}

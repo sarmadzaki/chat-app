@@ -60,7 +60,7 @@ class ChatRoom extends Component {
     const currentMessages = this.state.messages.map((message, i) => {
       return (
         <li key={i} className="bubble">
-            <div className=""></div>
+          <div className=""></div>
           {message.text}
         </li>
       )
@@ -69,16 +69,21 @@ class ChatRoom extends Component {
 
       <div>
         <ChatBox messages={currentMessages}
-                  loadingMessage={this.state.loading}          
-         />
-        <form className="col-md-8" onSubmit={(event) => this.submitMessage(event)}>
-          <input required ref="msg"
-            onBlur={(event) => { this.notTyping(event) }}
-            onFocus={(event) => { this.userTyping(event) }}
-            onChange={(event) => this.updateMessage(event)}
-            className="form-control" type="text" />
-          <br />
-          <button className="btn btn-primary">Send</button>
+          loadingMessage={this.state.loading}
+        />
+
+        <form className="col-md-8 form" onSubmit={(event) => this.submitMessage(event)}>
+          <div className="input-group">
+            <input required ref="msg"
+              onBlur={(event) => { this.notTyping(event) }}
+              onFocus={(event) => { this.userTyping(event) }}
+              onChange={(event) => this.updateMessage(event)}
+              className="form-control input-sm" type="text" />
+            <span className="input-group-btn">
+              <button className="btn btn-warning btn-sm" id="btn-chat">
+                Send</button>
+            </span>
+          </div>
         </form>
       </div>
     );
