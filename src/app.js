@@ -5,6 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <h1>React Chat App</h1>
       <ChatRoom/>
       </div>
     );
