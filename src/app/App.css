@@ -3,7 +3,7 @@
     scroll-behavior: smooth;
     overflow-y: scroll;
     height: 500px;
-    background: #ffffff url("./bg.jpg") no-repeat fixed left;
+    background: #ffffff url("../bg.jpg") no-repeat fixed left;
 }
 .bubble{
     background-color: #F2F2F2;

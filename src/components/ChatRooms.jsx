@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase';
-import '../App.css'
+import '../app/App.css'
 import ChatBox from './Chat_Box'
 class ChatRoom extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      userTyping: "",
-      focus: false,
       message: '',
       messages: [],
       loading: 'Loading....'
@@ -17,8 +15,7 @@ class ChatRoom extends Component {
   componentDidMount() {
     console.log("mount component");
     firebase.database().ref('messages/').on('value', (snapshot) => {
-      const currentMessages = snapshot.val()
-      // const loading = <p>Loading...</p>
+      const currentMessages = snapshot.val();
       if (currentMessages != null) {
         this.setState({
           messages: currentMessages,
@@ -30,31 +27,42 @@ class ChatRoom extends Component {
     })
   }
   updateMessage(event) {
-    console.log(event.target.value);
-
     this.setState({
       message: event.target.value
     })
   }
-  userTyping() {
-    this.setState({
-      userTyping: "someone is typing..."
-    })
-  }
-  notTyping() {
-    this.setState({
-      userTyping: ''
-    })
-  }
+
   submitMessage(event) {
     event.preventDefault()
-    console.log(this.state.message);
     const nextMessage = {
       id: this.state.messages.length,
       text: this.state.message
     }
     firebase.database().ref('messages/' + nextMessage.id).set(nextMessage)
     this.refs.msg.value = "";
+  }
+  userTyping(e) {
+    firebase.database().ref('typing/').set({
+      status: true
+    });
+    firebase.database().ref('typing/').set({
+      status: true
+    });
+    firebase.database().ref('typing/').on('value', (snap) => {
+      this.setState({
+        typing: snap.val()
+      })
+    })
+  }
+  notTyping(e) {
+    firebase.database().ref('/typing').set({
+      status: false
+    });
+    firebase.database().ref('typing/').on('value', (snap) => {
+      this.setState({
+        typing: snap.val()
+      })
+    })
   }
   render() {
     const currentMessages = this.state.messages.map((message, i) => {
@@ -70,6 +78,7 @@ class ChatRoom extends Component {
       <div>
         <ChatBox messages={currentMessages}
           loadingMessage={this.state.loading}
+          typing={this.state.typing}
         />
 
         <form className="col-md-8 form" onSubmit={(event) => this.submitMessage(event)}>

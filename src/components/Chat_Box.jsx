@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../app/App.css'
+import * as firebase from 'firebase';
 
 class ChatBox extends Component {
+	constructor(props){
+		super(props);
+		this.state = { typing: false	}
+	}
+	
+	componentDidUpdate(previousProps, previousState) {
+		var el = this.refs.last;
+		el.scrollTop = el.scrollHeight;
+	}
 	render() {
 		return (
-			<div className="chat  col-md-8">
+			<div className="chat  col-md-8" ref="last">
 				<ul className="list-group">
 					{this.props.messages}
 					<h1 className="loading">
 					{this.props.loadingMessage}
 					</h1>
-					{/* <p>{this.state.userTyping}</p> */}
+					<h3>{this.state.typing? "typing" : ''}</h3>
 				</ul>
 			</div>
 		);
