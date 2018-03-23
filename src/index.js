@@ -5,7 +5,8 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import * as firebase from 'firebase'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Login from './components/Auth/login'
+import Login from './components/Auth/login/login'
+import Registration from './components/Auth/registration/registration';
 
 
   var config = {
@@ -23,6 +24,8 @@ ReactDOM.render(
     <div>
        <Route exact path="/" component={App} />
        <Route exact path="/login" component={Login} />
+       <Route exact path="/register" component={Registration} />
+       
     </div>
     </Router>,
   document.getElementById('root')
