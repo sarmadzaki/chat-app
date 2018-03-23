@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../app/App.css'
 import * as firebase from 'firebase';
+import '../../app/App.css';
 
 class ChatBox extends Component {
 	constructor(props){

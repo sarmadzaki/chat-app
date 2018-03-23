@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatRoom from '../components/ChatRooms.jsx';
+import ChatRoom from '../components/Chat/ChatRooms'
 
 class App extends Component {
   render() {
@@ -11,5 +11,4 @@ class App extends Component {
     );
   }
 }
-// ReactDOM.render(<App />, document.getElementById('app'));
 export default App;

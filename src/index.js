@@ -4,7 +4,8 @@ import App from './app/app';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import * as firebase from 'firebase'
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from './components/Auth/login'
 
 
   var config = {
@@ -18,6 +19,11 @@ import * as firebase from 'firebase'
   firebase.initializeApp(config);
 
 ReactDOM.render(
-  <App/>,
+  <Router>
+    <div>
+       <Route exact path="/" component={App} />
+       <Route exact path="/login" component={Login} />
+    </div>
+    </Router>,
   document.getElementById('root')
 );
