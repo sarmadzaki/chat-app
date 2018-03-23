@@ -1,9 +1,8 @@
-# Live Demo 
-============
+## Chat App using Reactjs and Firebase. 
+### Live Demo ###
+[React Chat](http://react-chat.surge.sh/)
 
-[React Chat] (http://react-chat.surge.sh/)
-
-# Installation
+### For Development, installation guide
 - Download or Clone this Repository
 - cd into that Folder
-- npm install
+- yarn OR npm install
